@@ -1,7 +1,7 @@
 {
-	"name": "open-toolkit-ui",
-	"version": "1.0.0",
-	"description": "The ui of the open-toolkit project",
+	"name": "wood-cutting-tool-ui",
+	"version": "1.1.0",
+	"description": "",
 	"scripts": {
 		"start": "parcel serve src/index.html -p 9000 --cache-dir .cache",
 		"build": "rm -rf ./dist/* && rm -rf ./.cache && npx parcel build src/index.html --dist-dir dist --cache-dir .cache",
