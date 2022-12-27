@@ -9,8 +9,8 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
-		"watch": "swc -w src/ -d public/js/",
-		"build": "swc src/ -d public/js/",
+		"watch": "swc -w src/ -d public/js/ --config-file .swcrc",
+		"build": "swc src/ -d public/js/ --config-file .swcrc",
 		"format": "prettier src/",
 		"format:write": "prettier src/ --write",
 		"format:check": "prettier src/ --check"
