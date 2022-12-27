@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  builder:
+    restart: "no"
+    build: 
+      target: ${ENV_TYPE}
+      context: ./
+      dockerfile: ./Dockerfile.builder
+    volumes:
+      - "./src:/usr/ui/src"
+      - "./public/js:/usr/ui/public/js"
+  nginx:
+    restart: always
+    build: 
+      context: ./
+      dockerfile: ./Dockerfile.nginx
+    ports:
+      - "3000:80"
+    volumes:
+      - "./public:/www/data"

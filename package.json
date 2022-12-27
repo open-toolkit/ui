@@ -1,0 +1,17 @@
+{
+	"devDependencies": {
+		"@swc/cli": "^0.1.57",
+		"@swc/core": "^1.3.18",
+		"chokidar": "^3.5.3"
+	},
+	"name": "ui",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"watch": "swc -w src/ -d public/js/",
+		"build": "swc src/ -d public/js/"
+	},
+	"author": "Meilky",
+	"license": "ISC",
+	"description": ""
+}
