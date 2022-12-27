@@ -17,5 +17,14 @@
 	},
 	"author": "Meilky",
 	"license": "ISC",
-	"description": ""
+	"description": "",
+	"dependencies": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/open-toolkit/ui.git"
+	},
+	"bugs": {
+		"url": "https://github.com/open-toolkit/ui/issues"
+	},
+	"homepage": "https://github.com/open-toolkit/ui#readme"
 }
