@@ -18,6 +18,8 @@ done
 function gen_env {
 	echo "Generating $ENVPATH..."
 
+	#----- Env type
+	
 	local ENV_TYPE=""
 	local ENV_TYPE_ITER="0"
 
@@ -35,8 +37,37 @@ function gen_env {
 		ENV_TYPE_ITER="1"
 	done
 
+	#----- Nginx port
+
+	local NGINX_PORT=""
+	local NGINX_PORT_ITER="0"
+	local NGINX_PORT_RE="^[0-9]+$"
+
+	if [ "$USE_DEFAULTS" == "y" ]; then
+		NGINX_PORT="2000"
+	fi
+
+	while ! [[ $NGINX_PORT =~ $NGINX_PORT_RE ]]; do
+		if ! [ "$NGINX_PORT_ITER" == "0" ]; then
+			echo -e "$COLORRED$NGINX_PORT is not a valid answer$COLORCLEAR"
+		fi
+
+		read -p "Nginx port (number): " NGINX_PORT
+
+		NGINX_PORT_ITER="1"
+	done
+
+	#----- Result print
+	
+
+	echo -e "$COLORGREEN+----- Env variables:$COLORCLEAR"
 	echo "Env type : $ENV_TYPE"
+	echo "Nginx port : $NGINX_PORT"
+
+	#----- Result save
+	
 	echo "ENV_TYPE=$ENV_TYPE" >> .env
+	echo "NGINX_PORT=$NGINX_PORT" >> .env
 }
 
 echo "Checking if $ENVPATH exist..."
