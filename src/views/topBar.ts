@@ -1,11 +1,11 @@
-export class Content {
+export class TopBar {
 	protected element: HTMLElement;
 
 	public constructor() {
 		this.element = document.createElement("div");
 
-		this.style()
-		this.render()
+		this.style();
+		this.render();
 	}
 
 	protected style(): void {
@@ -14,17 +14,17 @@ export class Content {
 		s.padding = "0";
 		s.margin = "0";
 
-		s.gridColumn = "2";
-		s.gridRow = "2";
+		s.gridColumnStart = "1";
+		s.gridColumnEnd = "3";
 
-		s.overflowY = "scroll"
+		s.gridRow = "1";
 	}
 
-	protected render() : void {
-		this.element.innerText = "Content"
+	protected render(): void {
+		this.element.innerText = "Top Bar";
 	}
 
 	public get(): HTMLElement {
-		return this.element
+		return this.element;
 	}
 }

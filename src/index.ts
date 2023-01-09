@@ -1,5 +1,3 @@
-import { App } from "./app.js";
+import { App } from "./views/app.js";
 
-const app = new App();
-
-document.body.appendChild(app.get());
+new App(document.body);
