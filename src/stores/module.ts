@@ -1,18 +1,46 @@
-import { Broker } from "../lib/broker.js";
-import { Module } from "../models/module.js";
+import { PrivateBroker } from "../lib/brokers/private.js";
+import { PublicBroker } from "../lib/brokers/public.js";
+import { Module, ModuleDTO } from "../models/module.js";
 
-interface Events {
-	create: Module;
+export interface InEvents {
+	add: ModuleDTO;
+	delete: ModuleDTO;
 }
 
-export class ModuleStore extends Broker<Events> {
+export interface OutEvents {
+	added: Module;
+	deleted: Module;
+}
+
+export class ModuleStore extends PrivateBroker<OutEvents> {
 	protected modules: Map<string, Module>;
 
-	public constructor() {
+	public constructor(publicBroker: PublicBroker<InEvents>) {
 		super();
+
+		this.modules = new Map();
+
+		publicBroker.subscribe("add", this.add, this);
+		publicBroker.subscribe("delete", this.delete, this);
 	}
 
-	public create(raw: { name: string }) {
-		this.modules.set(raw.name, new Module(raw.name));
+	public get(): IterableIterator<Module> {
+		return this.modules.values();
+	}
+
+	protected add(raw: ModuleDTO): void {
+		const newModule = new Module(raw);
+
+		this.modules.set(raw.name, newModule);
+		this.publish("added", newModule);
+	}
+
+	protected delete(raw: ModuleDTO): void {
+		const existingModule = this.modules.get(raw.name);
+
+		if (typeof existingModule === "undefined") return;
+
+		this.modules.delete(raw.name);
+		this.publish("deleted", existingModule);
 	}
 }

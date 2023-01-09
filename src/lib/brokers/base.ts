@@ -1,14 +1,14 @@
-type Callback<T> = (value: T) => any;
+export type Callback<T> = (value: T) => any;
 
-interface CallbackHolder {
+export interface CallbackHolder {
 	topic: number[];
 	callback: Callback<any>;
 	thisArg: any;
 }
 
-export class Broker<T> {
-	private topics: Map<keyof T, number[]>;
-	private callbacks: Map<number, CallbackHolder>;
+export class BaseBroker<T> {
+	protected topics: Map<keyof T, number[]>;
+	protected callbacks: Map<number, CallbackHolder>;
 
 	private nextUID: number;
 	public constructor() {
@@ -24,9 +24,10 @@ export class Broker<T> {
 		this.nextUID++;
 
 		const topic = this.genOrGetTopic(topicName);
+		topic.push(tmp)
 
 		const holder: CallbackHolder = {
-			topic: topic,
+			topic,
 			callback,
 			thisArg,
 		};
@@ -48,20 +49,6 @@ export class Broker<T> {
 		holder.topic.splice(index, 1);
 
 		this.callbacks.delete(uid);
-	}
-
-	public publish<K extends keyof T>(topicName: K, value: T[K]): void {
-		const uids = this.topics.get(topicName);
-
-		if (typeof uids === "undefined") return;
-
-		for (const uid of uids) {
-			const holder = this.callbacks.get(uid);
-
-			if (typeof holder === "undefined") continue;
-
-			holder.callback.call(holder.thisArg, value);
-		}
 	}
 
 	private genOrGetTopic(topicName: keyof T): number[] {

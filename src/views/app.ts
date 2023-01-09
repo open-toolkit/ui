@@ -1,32 +1,19 @@
-import { SideBar } from "./sideBar.js";
-import { TopBar } from "./topBar.js";
-import { Content } from "./content.js";
-
 export class App {
 	protected element: HTMLElement;
-	protected children: {
-		sideBar: SideBar;
-		topBar: TopBar;
-		content: Content;
-	};
+	protected children: HTMLElement[];
 
-	public constructor(dom: HTMLElement) {
-		this.element = dom;
-
-		this.children = {
-			sideBar: new SideBar(),
-			topBar: new TopBar(),
-			content: new Content(),
-		};
+	public constructor(topBar: HTMLElement, sideBar: HTMLElement, content: HTMLElement) {
+		this.element = document.createElement("div")
+		this.children = [sideBar, topBar, content];
 
 		this.style();
 		this.render();
 	}
 
 	protected render(): void {
-		this.element.appendChild(this.children.topBar.get());
-		this.element.appendChild(this.children.sideBar.get());
-		this.element.appendChild(this.children.content.get());
+		for (const child of this.children) {
+			this.element.appendChild(child);
+		}
 	}
 
 	protected style(): void {
