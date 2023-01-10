@@ -1,3 +1,4 @@
+import { createElement as ce } from "../lib/createElement.js";
 import { PublicBroker } from "../lib/brokers/public.js";
 import { Module } from "../models/module.js";
 import { ModuleStore, InEvents as ModuleStoreInEvents } from "../stores/module.js";
@@ -18,7 +19,15 @@ export class SideBar {
 
 	protected changes: Change[];
 	public constructor(publicBroker: PublicBroker<Events>, moduleStore: ModuleStore) {
-		this.element = document.createElement("div");
+		this.element = ce({
+			tagName: "div",
+			style: {
+				padding: "0",
+				margin: "0",
+				gridColumn: "1",
+				gridRow: "2",
+			},
+		});
 		this.children = new Map();
 
 		this.publicBroker = publicBroker;
@@ -31,7 +40,6 @@ export class SideBar {
 		}
 
 		this.subscribe();
-		this.style();
 		this.render();
 	}
 
@@ -54,16 +62,6 @@ export class SideBar {
 		this.render();
 	}
 
-	protected style(): void {
-		const s = this.element.style;
-
-		s.padding = "0";
-		s.margin = "0";
-
-		s.gridColumn = "1";
-		s.gridRow = "2";
-	}
-
 	protected render(): void {
 		for (const change of this.changes) {
 			const model = change.model;
@@ -71,8 +69,7 @@ export class SideBar {
 
 			switch (change.type) {
 				case "added":
-					child = document.createElement("div");
-					child.innerText = model.name
+					child = ce({ tagName: "div", innerText: model.name });
 					this.children.set(model.name, child);
 					this.element.appendChild(child);
 					break;

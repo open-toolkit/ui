@@ -1,27 +1,20 @@
+import { createElement as ce } from "../lib/createElement.js";
+
 export class TopBar {
 	protected element: HTMLElement;
 
 	public constructor() {
-		this.element = document.createElement("div");
-
-		this.style();
-		this.render();
-	}
-
-	protected style(): void {
-		const s = this.element.style;
-
-		s.padding = "0";
-		s.margin = "0";
-
-		s.gridColumnStart = "1";
-		s.gridColumnEnd = "3";
-
-		s.gridRow = "1";
-	}
-
-	protected render(): void {
-		this.element.innerText = "Top Bar";
+		this.element = ce({
+			tagName: "div",
+			style: {
+				padding: "0",
+				margin: "0",
+				gridColumnStart: "1",
+				gridColumnEnd: "3",
+				gridRow: "1",
+			},
+			innerText: "Top bar",
+		});
 	}
 
 	public get(): HTMLElement {
