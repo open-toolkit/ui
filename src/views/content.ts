@@ -10,7 +10,6 @@ export class Content {
 				padding: "0",
 				margin: "0",
 				gridColumn: "2",
-				gridRow: "2",
 				overflowY: "scroll",
 			},
 			innerText: "Content",

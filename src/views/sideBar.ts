@@ -23,11 +23,14 @@ export class SideBar {
 			tagName: "div",
 			style: {
 				padding: "0",
+				paddingRight: "1vw",
+				paddingLeft: "1vw",
+				paddingTop: "1vh",
 				margin: "0",
-				gridColumn: "1",
-				gridRow: "2",
+				backgroundColor: "var(--dark)",
 			},
 		});
+
 		this.children = new Map();
 
 		this.publicBroker = publicBroker;

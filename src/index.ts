@@ -1,4 +1,3 @@
-import { TopBar } from "./views/topBar.js";
 import { SideBar } from "./views/sideBar.js";
 import { Content } from "./views/content.js";
 
@@ -21,10 +20,9 @@ setTimeout(() => {
 	publicBroker.publish("delete", { name: "lol0" });
 }, 4000);
 
-const topBar = new TopBar();
 const sideBar = new SideBar(publicBroker, moduleStore);
 const content = new Content();
 
-const app = new App(topBar.get(), sideBar.get(), content.get());
+const app = new App(sideBar.get(), content.get());
 
 document.body.appendChild(app.get());
