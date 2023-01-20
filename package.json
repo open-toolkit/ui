@@ -3,7 +3,8 @@
 		"@swc/cli": "^0.1.57",
 		"@swc/core": "^1.3.18",
 		"chokidar": "^3.5.3",
-		"prettier": "^2.8.1"
+		"prettier": "^2.8.1",
+		"type-fest": "^3.5.2"
 	},
 	"name": "ui",
 	"version": "1.0.0",
@@ -18,7 +19,6 @@
 	"author": "Meilky",
 	"license": "ISC",
 	"description": "",
-	"dependencies": {},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/open-toolkit/ui.git"
