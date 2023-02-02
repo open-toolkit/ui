@@ -5,7 +5,7 @@ import { App } from "./views/app.js";
 import { PublicBroker } from "./lib/brokers/public.js";
 import { InEvents as ModuleStoreInEvents, ModuleStore } from "./stores/module.js";
 
-interface PublicEvents extends ModuleStoreInEvents { }
+interface PublicEvents extends ModuleStoreInEvents {}
 
 const publicBroker = new PublicBroker<PublicEvents>();
 const moduleStore = new ModuleStore(publicBroker);

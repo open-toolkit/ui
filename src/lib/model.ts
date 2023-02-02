@@ -4,11 +4,11 @@ type Types = "string" | "number" | "boolean" | "undefined";
 
 type ModelConfig<T> = {
 	[K in keyof T]: T[K] extends object
-	? { type: "object"; fields: ModelConfig<T[K]> }
-	: {
-		type: Types[];
-		default: T[K];
-	};
+		? { type: "object"; fields: ModelConfig<T[K]> }
+		: {
+				type: Types[];
+				default: T[K];
+		  };
 };
 
 export class Model<T> {

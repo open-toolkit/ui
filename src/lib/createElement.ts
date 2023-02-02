@@ -12,7 +12,7 @@ interface Definition {
 			| "setProperty"
 		>
 	>;
-	attributes?: {[key:string]: string}
+	attributes?: { [key: string]: string };
 	innerText?: string;
 	children?: HTMLElement[];
 }

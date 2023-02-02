@@ -24,7 +24,7 @@ export class BaseBroker<T> {
 		this.nextUID++;
 
 		const topic = this.genOrGetTopic(topicName);
-		topic.push(tmp)
+		topic.push(tmp);
 
 		const holder: CallbackHolder = {
 			topic,

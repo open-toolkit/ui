@@ -3,7 +3,7 @@ import { PublicBroker } from "../lib/brokers/public.js";
 import { Module } from "../models/module.js";
 import { ModuleStore, InEvents as ModuleStoreInEvents } from "../stores/module.js";
 
-interface Events extends ModuleStoreInEvents { }
+interface Events extends ModuleStoreInEvents {}
 
 interface Change {
 	type: "deleted" | "added";
