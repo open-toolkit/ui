@@ -4,8 +4,9 @@ FROM node:latest as base
 WORKDIR /usr/ui/
 
 COPY ./package*.json .
-COPY ./.swcrc .
-COPY ./src .
+COPY ./src ./src
+COPY ./scripts ./scripts
+COPY ./tsconfig.json .
 
 RUN npm install
 

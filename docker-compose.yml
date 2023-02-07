@@ -8,7 +8,7 @@ services:
       dockerfile: ./Dockerfile.builder
     volumes:
       - "./src:/usr/ui/src"
-      - "./public/js:/usr/ui/public/js"
+      - "public-js:/usr/ui/public/js"
   nginx:
     restart: always
     build: 
@@ -17,4 +17,10 @@ services:
     ports:
       - "${NGINX_PORT}:80"
     volumes:
-      - "./public:/www/data"
+      - "./public/css:/www/css"
+      - "./public/html:/www/html"
+      - "public-js:/www/js"
+
+volumes:
+  public-js:
+    driver: local
