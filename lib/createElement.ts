@@ -22,7 +22,7 @@ export const createElement = (definition: Definition): HTMLElement => {
 
 	for (const [key, value] of Object.entries(definition.style || {})) {
 		if (typeof value !== "string") continue;
-		element.style[key] = value;
+		element.style[key as any] = value;
 	}
 
 	if (typeof definition.innerText === "string") {

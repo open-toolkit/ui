@@ -5,8 +5,9 @@ WORKDIR /usr/ui/
 
 COPY ./package*.json .
 COPY ./src ./src
-COPY ./scripts ./scripts
+COPY ./lib ./lib
 COPY ./tsconfig.json .
+COPY ./rollup.config.js .
 
 RUN npm install
 

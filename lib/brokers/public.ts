@@ -1,4 +1,4 @@
-import { BaseBroker } from "./base.js";
+import { BaseBroker } from "./base";
 
 export class PublicBroker<T> extends BaseBroker<T> {
 	public constructor() {

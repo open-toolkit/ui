@@ -1,17 +1,21 @@
 {
 	"devDependencies": {
-		"esbuild": "0.17.6",
-		"esbuild-css-modules-plugin": "^2.7.1",
+		"@rollup/plugin-terser": "^0.4.0",
+		"@rollup/plugin-typescript": "^11.0.0",
 		"prettier": "^2.8.1",
+		"rollup": "^3.17.3",
+		"tslib": "^2.5.0",
 		"type-fest": "^3.5.2",
-		"chokidar": "^3.5.3"
+		"typescript": "^4.9.5"
 	},
 	"name": "ui",
 	"version": "1.0.0",
+	"type": "module",
 	"scripts": {
-		"watch": "node ./scripts/watch.js",
-		"build": "node ./scripts/build.js",
-		"format": "prettier src/ --write"
+		"clean": "rm -f -r public/js/*",
+		"watch": "npm run clean && rollup -c --watch",
+		"build": "npm run clean && rollup -c",
+		"format": "prettier lib/ src/ --write"
 	},
 	"author": "Meilky",
 	"license": "ISC",

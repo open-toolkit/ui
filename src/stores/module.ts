@@ -1,6 +1,6 @@
-import { PrivateBroker } from "../lib/brokers/private.js";
-import { PublicBroker } from "../lib/brokers/public.js";
-import { Module, ModuleDTO } from "../models/module.js";
+import { PrivateBroker } from "@lib/brokers/private";
+import { PublicBroker } from "@lib/brokers/public";
+import { Module, ModuleDTO } from "../models/module";
 
 export interface InEvents {
 	add: ModuleDTO;

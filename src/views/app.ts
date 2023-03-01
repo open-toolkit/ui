@@ -1,4 +1,4 @@
-import { createElement as ce } from "../lib/createElement.js";
+import { createElement as ce } from "@lib/createElement";
 
 export class App {
 	protected element: HTMLElement;

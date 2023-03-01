@@ -1,7 +1,7 @@
-import { createElement as ce } from "../lib/createElement.js";
-import { PublicBroker } from "../lib/brokers/public.js";
-import { Module } from "../models/module.js";
-import { ModuleStore, InEvents as ModuleStoreInEvents } from "../stores/module.js";
+import { createElement as ce } from "@lib/createElement";
+import { PublicBroker } from "@lib/brokers/public";
+import { Module } from "../models/module";
+import { ModuleStore, InEvents as ModuleStoreInEvents } from "../stores/module";
 
 interface Events extends ModuleStoreInEvents {}
 
@@ -72,13 +72,13 @@ export class SideBar {
 
 			switch (change.type) {
 				case "added":
-					child = ce({ tagName: "div", innerText: model.name });
-					this.children.set(model.name, child);
+					child = ce({ tagName: "div", innerText: model.get().name });
+					this.children.set(model.get().name, child);
 					this.element.appendChild(child);
 					break;
 				case "deleted":
-					child = this.children.get(model.name)!;
-					this.children.delete(model.name);
+					child = this.children.get(model.get().name)!;
+					this.children.delete(model.get().name);
 					this.element.removeChild(child);
 					break;
 			}

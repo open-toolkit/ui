@@ -1,9 +1,9 @@
-import { SideBar } from "./views/sideBar.js";
-import { Content } from "./views/content.js";
+import { SideBar } from "./views/sideBar";
+import { Content } from "./views/content";
 
-import { App } from "./views/app.js";
-import { PublicBroker } from "./lib/brokers/public.js";
-import { InEvents as ModuleStoreInEvents, ModuleStore } from "./stores/module.js";
+import { App } from "./views/app";
+import { PublicBroker } from "@lib/brokers/public";
+import { InEvents as ModuleStoreInEvents, ModuleStore } from "./stores/module";
 
 interface PublicEvents extends ModuleStoreInEvents {}
 

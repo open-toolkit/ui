@@ -8,6 +8,7 @@ services:
       dockerfile: ./Dockerfile.builder
     volumes:
       - "./src:/usr/ui/src"
+      - "./lib:/usr/ui/lib"
       - "public-js:/usr/ui/public/js"
   nginx:
     restart: always
