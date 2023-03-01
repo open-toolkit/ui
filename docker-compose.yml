@@ -9,7 +9,7 @@ services:
     volumes:
       - "./src:/usr/ui/src"
       - "./lib:/usr/ui/lib"
-      - "public-js:/usr/ui/public/js"
+      - "./public:/usr/ui/public/"
   nginx:
     restart: always
     build: 
@@ -18,10 +18,4 @@ services:
     ports:
       - "${NGINX_PORT}:80"
     volumes:
-      - "./public/css:/www/css"
-      - "./public/html:/www/html"
-      - "public-js:/www/js"
-
-volumes:
-  public-js:
-    driver: local
+      - "./public:/www/public"

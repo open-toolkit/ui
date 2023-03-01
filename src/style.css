@@ -1,0 +1,45 @@
+:root {
+	--blue: #7aa2f7;
+	--indigo: #2ac3de;
+	--purple: #9d7cd8;
+	--pink: #f7768e;
+	--red: #f7768e;
+	--orange: #ff9e64;
+	--yellow: #e0af68;
+	--green: #9ece6a;
+	--teal: #1abc9c;
+	--cyan: #7dcfff;
+	--white: #c0caf5;
+	--gray: #6c757d;
+	--gray-100: #f8f9fa;
+	--gray-200: #e9ecef;
+	--gray-300: #dee2e6;
+	--gray-400: #ced4da;
+	--gray-500: #adb5bd;
+	--gray-600: #6c757d;
+	--gray-700: #495057;
+	--gray-800: #343a40;
+	--gray-900: #24283b;
+	--primary: #292e42;
+	--secondary: #a9b1d6;
+	--success: #9ece6a;
+	--info: #9d7cd8;
+	--warning: #e0af68;
+	--danger: #f7768e;
+	--light: #a9b1d6;
+	--dark: #343a40;
+	--font: "DejaVu Mono", "Source Code Pro", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+		monospace;
+	--font-size: 1rem;
+	--font-weight: 400;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	color: var(--white);
+	background-color: var(--primary);
+	font-family: var(--font);
+	font-size: var(--font-size);
+	font-weight: var(--font-weight);
+}

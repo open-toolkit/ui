@@ -1,3 +1,5 @@
+import "./style.css"
+
 import { SideBar } from "./views/sideBar";
 import { Content } from "./views/content";
 

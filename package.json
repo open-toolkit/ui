@@ -1,9 +1,11 @@
 {
 	"devDependencies": {
+		"@rollup/plugin-html": "^1.0.2",
 		"@rollup/plugin-terser": "^0.4.0",
 		"@rollup/plugin-typescript": "^11.0.0",
 		"prettier": "^2.8.1",
 		"rollup": "^3.17.3",
+		"rollup-plugin-postcss": "^4.0.2",
 		"tslib": "^2.5.0",
 		"type-fest": "^3.5.2",
 		"typescript": "^4.9.5"
@@ -12,7 +14,7 @@
 	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
-		"clean": "rm -f -r public/js/*",
+		"clean": "rm -rf public/*",
 		"watch": "npm run clean && rollup -c --watch",
 		"build": "npm run clean && rollup -c",
 		"format": "prettier lib/ src/ --write"
