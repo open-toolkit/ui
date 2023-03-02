@@ -1,30 +1,29 @@
-import "./style.css"
+import "./index.css";
 
-import { SideBar } from "./views/sideBar";
+import { SideBar } from "./views/sidebar";
 import { Content } from "./views/content";
 
 import { App } from "./views/app";
-import { PublicBroker } from "@lib/brokers/public";
-import { InEvents as ModuleStoreInEvents, ModuleStore } from "./stores/module";
+import { ModuleStore } from "./stores/module";
+import { Module } from "./models/module";
 
-interface PublicEvents extends ModuleStoreInEvents {}
+const moduleStore = new ModuleStore();
 
-const publicBroker = new PublicBroker<PublicEvents>();
-const moduleStore = new ModuleStore(publicBroker);
-
-publicBroker.publish("add", { name: "lol0" });
+moduleStore.add("lol0", new Module({ name: "lol0" }));
+moduleStore.add("lol1", new Module({ name: "lol1" }));
+moduleStore.add("lol2", new Module({ name: "lol2" }));
 
 setTimeout(() => {
-	publicBroker.publish("add", { name: "lol1" });
+	moduleStore.add("lol3", new Module({ name: "lol3" }));
 }, 2000);
 
 setTimeout(() => {
-	publicBroker.publish("delete", { name: "lol0" });
+	moduleStore.remove("lol1");
 }, 4000);
 
-const sideBar = new SideBar(publicBroker, moduleStore);
+const sidebar = new SideBar(moduleStore);
 const content = new Content();
 
-const app = new App(sideBar.get(), content.get());
+const app = new App(sidebar.get(), content.get());
 
 document.body.appendChild(app.get());

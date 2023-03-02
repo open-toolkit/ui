@@ -1,8 +1,8 @@
 import { BaseBroker } from "./base";
 
 export class PublicBroker<T> extends BaseBroker<T> {
-	public constructor() {
-		super();
+	public constructor(topics: (keyof T)[]) {
+		super(topics);
 	}
 
 	public publish<K extends keyof T>(topicName: K, value: T[K]): void {

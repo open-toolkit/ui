@@ -3,7 +3,7 @@ import { createElement as ce } from "@lib/createElement";
 export class App {
 	protected element: HTMLElement;
 
-	public constructor(sideBar: HTMLElement, content: HTMLElement) {
+	public constructor(sidebar: HTMLElement, content: HTMLElement) {
 		this.element = ce({
 			tagName: "div",
 			style: {
@@ -13,7 +13,7 @@ export class App {
 				gridTemplateRows: "100vh",
 				gridTemplateColumns: "12vw 88vw",
 			},
-			children: [sideBar, content],
+			children: [sidebar, content],
 		});
 	}
 

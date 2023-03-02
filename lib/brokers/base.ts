@@ -11,9 +11,13 @@ export class BaseBroker<T> {
 	protected callbacks: Map<number, CallbackHolder>;
 
 	private nextUID: number;
-	public constructor() {
+	public constructor(topics: (keyof T)[]) {
 		this.topics = new Map();
 		this.callbacks = new Map();
+
+		for (const topicName of topics) {
+			this.topics.set(topicName, []);
+		}
 
 		this.nextUID = 0;
 	}
@@ -23,7 +27,12 @@ export class BaseBroker<T> {
 
 		this.nextUID++;
 
-		const topic = this.genOrGetTopic(topicName);
+		const topic = this.topics.get(topicName);
+
+		if (topic === undefined) {
+			throw new Error("No topic named: " + topicName.toString());
+		}
+
 		topic.push(tmp);
 
 		const holder: CallbackHolder = {
@@ -49,16 +58,5 @@ export class BaseBroker<T> {
 		holder.topic.splice(index, 1);
 
 		this.callbacks.delete(uid);
-	}
-
-	private genOrGetTopic(topicName: keyof T): number[] {
-		let existingTopic = this.topics.get(topicName);
-
-		if (typeof existingTopic === "undefined") {
-			existingTopic = [];
-			this.topics.set(topicName, existingTopic);
-		}
-
-		return existingTopic;
 	}
 }
