@@ -9,13 +9,14 @@ COPY ./lib ./lib
 COPY ./tsconfig.json .
 COPY ./rollup.config.js .
 
-RUN npm install
+RUN npm ci
 
 
 # ---- Prod
 FROM base as production
 
 CMD npm run build
+
 
 # ---- Dev
 FROM base as development

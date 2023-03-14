@@ -5,26 +5,15 @@
 		"strict": true,
 		"outDir": "./public/js",
 		"sourceMap": true,
+		"inlineSources": true,
 		"moduleResolution": "node",
-		"lib": [
-			"esnext",
-			"dom"
-		],
+		"plugins": [{ "name": "typescript-plugin-css-modules" }],
+		"lib": ["esnext", "dom"],
 		"paths": {
-			"@src/*": [
-				"./src/*"
-			],
-			"@lib/*": [
-				"./lib/*"
-			]
+			"@src/*": ["./src/*"],
+			"@lib/*": ["./lib/*"]
 		}
 	},
-	"include": [
-		"src/**/*",
-		"lib/**/*"
-	],
-	"exclude": [
-		"node_modules",
-		"public"
-	]
+	"include": ["src/**/*", "lib/**/*"],
+	"exclude": ["node_modules", "public"]
 }
