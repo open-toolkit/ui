@@ -3,12 +3,10 @@ import type { PartialDeep } from "type-fest";
 type Types = "string" | "number" | "boolean" | "undefined";
 
 type ModelConfig<T> = {
-	[K in keyof T]: T[K] extends object
-		? { type: "object"; fields: ModelConfig<T[K]> }
-		: {
-				type: Types[];
-				default: T[K];
-		  };
+	[K in keyof T]:
+		| { type: "object"; fields: ModelConfig<T[K]> }
+		| { type: Types[]; default: T[K] }
+		| { type: "any"; default?: any };
 };
 
 export class Model<T> {
@@ -16,8 +14,8 @@ export class Model<T> {
 	protected config: ModelConfig<T>;
 
 	public constructor(config: ModelConfig<T>, dto?: PartialDeep<T>) {
-		this.dto = this.initialise(config);
 		this.config = config;
+		this.dto = this.initialise(config);
 
 		if (dto) this.update(dto);
 	}
@@ -56,9 +54,14 @@ export class Model<T> {
 				continue;
 			}
 
-			if (!conf.type.includes(typeof dto[key] as Types)) continue;
+			if (conf.type === "any") {
+				thisDto[key] = dto[key];
+				continue;
+			}
 
-			thisDto[key] = dto[key];
+			if (conf.type.includes(typeof dto[key] as Types)) {
+				thisDto[key] = dto[key];
+			}
 		}
 	}
 }
