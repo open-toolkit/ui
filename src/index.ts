@@ -6,11 +6,11 @@ import { Content } from "./views/content";
 import { App } from "./views/app";
 import { ModuleStore } from "./stores/module";
 
-import HomeModule from "./modules/home/index"
+import HomeModule from "./modules/home/index";
 
 const moduleStore = new ModuleStore();
 
-moduleStore.add(HomeModule.get().name, HomeModule)
+moduleStore.add(HomeModule.get().name, HomeModule);
 
 const sidebar = new SideBar(moduleStore);
 const content = new Content();
