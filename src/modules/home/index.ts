@@ -1,23 +1,41 @@
-import { createElement as ce } from "@lib/createElement";
+import { ObservableArray } from "@lib/observable";
 import { Module } from "@src/models/module";
+import { AppView } from "@src/modules/home/views/app";
+import { Card } from "./models/card";
 
-export class Home {
-	protected element: HTMLElement;
+const card0 = new Card({
+	id: 0,
+	title: "card0",
+	description: "card0 description",
+});
 
-	public constructor() {
-		this.element = ce({
-			tagName: "div",
-		});
-	}
+const card1 = new Card({
+	id: 1,
+	title: "card1",
+	description: "card1 description",
+});
 
-	public get(): HTMLElement {
-		return this.element;
-	}
-}
+const card2 = new Card({
+	id: 2,
+	title: "card2",
+	description: "card2 description",
+});
 
-const content = new Home();
+const card3 = new Card({
+	id: 3,
+	title: "card3",
+	description: "card3 description",
+});
+
+const cards = new ObservableArray<Card>([card0, card1, card2]);
+const app = new AppView(cards);
+
+setTimeout(() => {
+	cards.remove(card0);
+	cards.add(card3);
+}, 3000);
 
 export default new Module({
 	name: "Home",
-	content: content.get(),
+	content: app.get(),
 });

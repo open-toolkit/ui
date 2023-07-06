@@ -1,11 +1,11 @@
 import { createElement as ce } from "@lib/createElement";
 import { Module } from "@src/models/module";
 import { ModuleStore } from "@src/stores/module";
-import { Item } from "./sidebar/item";
+import { SidebarItemView } from "./item";
 
-export class SideBar {
+export class SidebarView {
 	protected element: HTMLElement;
-	protected indexing: Map<string, Item>;
+	protected indexing: Map<string, SidebarItemView>;
 
 	protected moduleStore: ModuleStore;
 	public constructor(moduleStore: ModuleStore) {
@@ -38,7 +38,7 @@ export class SideBar {
 	}
 
 	protected added(model: Module): void {
-		const child = new Item(model);
+		const child = new SidebarItemView(model);
 
 		this.indexing.set(model.get().name, child);
 

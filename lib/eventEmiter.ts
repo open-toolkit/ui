@@ -35,7 +35,7 @@ class EmitingErrors extends Error {
 	}
 }
 
-export class EventEmiter<T extends { [K in keyof T]: any[] }> {
+export class EventEmitter<T extends { [K in keyof T]: any[] }> {
 	protected listeners: Map<string, Listener<any>[]>;
 
 	constructor(events: Extract<keyof T, string>[]) {

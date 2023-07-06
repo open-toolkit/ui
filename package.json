@@ -3,8 +3,12 @@
 		"@rollup/plugin-html": "^1.0.2",
 		"@rollup/plugin-terser": "^0.4.3",
 		"@rollup/plugin-typescript": "^11.1.2",
+		"@typescript-eslint/eslint-plugin": "^5.61.0",
+		"@typescript-eslint/parser": "^5.61.0",
 		"autoprefixer": "^10.4.14",
+		"eslint": "^8.44.0",
 		"prettier": "^2.8.8",
+		"rimraf": "^5.0.1",
 		"rollup": "^3.25.3",
 		"rollup-plugin-postcss": "^4.0.2",
 		"tslib": "^2.6.0",
@@ -12,14 +16,15 @@
 		"typescript": "^5.1.6",
 		"typescript-plugin-css-modules": "^5.0.1"
 	},
-	"name": "ui",
+	"name": "@open-toolkit/ui",
 	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
-		"clean": "rm -rf public/*",
+		"clean": "rimraf public/*",
 		"watch": "npm run clean && rollup -c --watch",
 		"build": "npm run clean && rollup -c",
-		"format": "prettier lib/ src/ --write"
+		"format": "prettier lib/**/*.ts src/**/*.ts --write",
+		"lint": "eslint lib/**/*.ts src/**/*.ts --fix "
 	},
 	"author": "Meilky",
 	"license": "ISC",

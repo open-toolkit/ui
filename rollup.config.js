@@ -10,11 +10,12 @@ const hash = createHash("md5").update(Date.now().toString()).digest("hex").subst
 
 export default {
 	input: "src/index.ts",
+	extentions: [".ts", ".js", ".scss", ".css"],
 	output: [
 		{
 			file: `public/index.${hash}.js`,
 			format: "es",
-			sourcemap: true,
+			sourceMap: true,
 		},
 	],
 	external: [...Object.keys(pkg.dependencies || {})],
@@ -24,7 +25,4 @@ export default {
 		html({ title: "ui" }),
 		terser(),
 	],
-	watch: {
-		include: ["src/**", "lib/**"],
-	},
 };

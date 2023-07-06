@@ -1,20 +1,16 @@
 import "./index.css";
 
-import { SideBar } from "./views/sidebar";
-import { Content } from "./views/content";
-
-import { App } from "./views/app";
+import { AppView } from "./views/app";
 import { ModuleStore } from "./stores/module";
 
 import HomeModule from "./modules/home/index";
+import { Observable } from "@lib/observable";
 
 const moduleStore = new ModuleStore();
+const currentModule = new Observable(HomeModule);
 
 moduleStore.add(HomeModule.get().name, HomeModule);
 
-const sidebar = new SideBar(moduleStore);
-const content = new Content();
-
-const app = new App(sidebar.get(), content.get());
+const app = new AppView(moduleStore, currentModule);
 
 document.body.appendChild(app.get());

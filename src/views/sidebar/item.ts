@@ -2,7 +2,7 @@ import { createElement } from "@lib/createElement";
 import { Module } from "@src/models/module";
 import style from "./item.module.scss";
 
-export class Item {
+export class SidebarItemView {
 	protected element: HTMLElement;
 
 	public constructor(model: Module) {
