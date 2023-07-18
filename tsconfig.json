@@ -3,11 +3,13 @@
 		"target": "esnext",
 		"module": "esnext",
 		"strict": true,
-		"outDir": "./public/js",
-		"sourceMap": true,
-		"inlineSources": true,
 		"moduleResolution": "node",
-		"plugins": [{ "name": "typescript-plugin-css-modules" }],
+		"esModuleInterop": true,
+		"plugins": [
+			{
+				"name": "typescript-plugin-css-modules"
+			}
+		],
 		"lib": ["esnext", "dom"],
 		"paths": {
 			"@src/*": ["./src/*"],

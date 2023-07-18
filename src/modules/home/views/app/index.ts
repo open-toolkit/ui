@@ -38,7 +38,7 @@ export class AppView {
 
 		const cardView = this.indexing.get(idx)!;
 
-		cardView.dispose();
+		cardView.remove();
 
 		this.indexing.delete(idx);
 	}
@@ -49,7 +49,7 @@ export class AppView {
 
 	public dispose() {
 		for (const child of this.indexing.values()) {
-			child.dispose();
+			child.remove();
 		}
 
 		this.indexing.clear();
