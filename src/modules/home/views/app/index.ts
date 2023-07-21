@@ -1,7 +1,7 @@
-import { createElement as ce } from "@lib/createElement";
-import { ObservableArray } from "@lib/observable";
+import { createElement as ce } from "../../../../libs/createElement";
+import { ObservableArray } from "../../../../libs/observable";
 import { Card } from "../../models/card";
-import { CardView } from "../card";
+import { CardView } from "../card/index";
 
 export class AppView {
 	protected element: HTMLElement;

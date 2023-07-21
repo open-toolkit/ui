@@ -3,19 +3,16 @@
 		"target": "esnext",
 		"module": "esnext",
 		"strict": true,
-		"moduleResolution": "node",
+		"moduleResolution": "bundle",
 		"esModuleInterop": true,
+		"sourceMap": true,
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules"
 			}
 		],
-		"lib": ["esnext", "dom"],
-		"paths": {
-			"@src/*": ["./src/*"],
-			"@lib/*": ["./lib/*"]
-		}
+		"lib": ["esnext", "dom"]
 	},
-	"include": ["src/**/*", "lib/**/*"],
+	"include": ["src/**/*", "modules.d.ts"],
 	"exclude": ["node_modules", "public"]
 }

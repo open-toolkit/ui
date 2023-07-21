@@ -1,4 +1,4 @@
-import { Model } from "@lib/model";
+import { Model } from "../libs/model";
 
 export interface ModuleDTO {
 	name: string;

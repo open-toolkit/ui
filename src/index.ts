@@ -4,7 +4,7 @@ import { AppView } from "./views/app";
 import { ModuleStore } from "./stores/module";
 
 import HomeModule from "./modules/home/index";
-import { Observable } from "@lib/observable";
+import { Observable } from "./libs/observable";
 
 const moduleStore = new ModuleStore();
 const currentModule = new Observable(HomeModule);

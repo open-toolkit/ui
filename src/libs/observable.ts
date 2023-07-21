@@ -100,3 +100,78 @@ export class ObservableArray<T> extends EventEmitter<ObservableArrayEvents<T>> {
 		this.emit("disposed");
 	}
 }
+
+type CallbackFn<Args extends readonly unknown[], T> = (...args: Args) => T;
+
+type ObservableCallback = CallbackFn<readonly unknown[], void | Promise<void>>;
+
+export default new (class {
+	private readonly _observables: WeakMap<object, Map<string, ObservableCallback[]>>;
+	private readonly _symbols: WeakMap<symbol, object>;
+
+	constructor() {
+		this._observables = new WeakMap();
+		this._symbols = new WeakMap();
+	}
+
+	public on(object: object, topic: string, callback: ObservableCallback): void {
+		const topics = this._observables.get(object);
+
+		if (!topics) {
+			const newTopics = new Map();
+
+			newTopics.set(topic, [callback]);
+
+			this._observables.set(object, newTopics);
+			return;
+		}
+
+		const observers = topics.get(topic)!;
+
+		observers.push(callback);
+	}
+
+	public off(object: object, topic: string, callback: ObservableCallback): void {
+		const topics = this._observables.get(object);
+
+		if (!topics) return;
+
+		const observers = topics.get(topic);
+
+		if (!observers) return;
+
+		const idx = observers.findIndex(v => v === callback);
+
+		if (idx === -1) return;
+
+		const lastIdx = observers.length - 1;
+
+		if (idx !== lastIdx) {
+			observers[idx] = observers[lastIdx];
+		}
+
+		observers.pop();
+	}
+
+	public emit(key: symbol | object, topic: string, ...args: unknown[]): void {
+		let object: object = key as object;
+
+		if (typeof key === "symbol") {
+			object = this._symbols.get(key)!;
+
+			if (!object) return;
+		}
+
+		const topics = this._observables.get(object);
+
+		if (!topics) return;
+
+		const observers = topics.get(topic);
+
+		if (!observers) return;
+
+		for (const observer of observers) {
+			observer(args);
+		}
+	}
+})();

@@ -1,5 +1,5 @@
-import { createElement } from "@lib/createElement";
-import { Module } from "@src/models/module";
+import { createElement } from "../../libs/createElement";
+import { Module } from "../../models/module";
 import style from "./item.module.scss";
 
 export class SidebarItemView {

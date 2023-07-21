@@ -1,9 +1,9 @@
-import { createElement as ce } from "@lib/createElement";
-import { SidebarView } from "../sidebar";
-import { ModuleStore } from "@src/stores/module";
-import { ContentView } from "../content";
-import { Observable } from "@lib/observable";
-import { Module } from "@src/models/module";
+import { createElement as ce } from "../../libs/createElement";
+import { SidebarView } from "../sidebar/index";
+import { ModuleStore } from "../../stores/module";
+import { ContentView } from "../content/index";
+import { Observable } from "../../libs/observable";
+import { Module } from "../../models/module";
 
 export class AppView {
 	protected element: HTMLElement;

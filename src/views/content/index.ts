@@ -1,6 +1,6 @@
-import { createElement as ce } from "@lib/createElement";
-import { Observable } from "@lib/observable";
-import { Module } from "@src/models/module";
+import { createElement as ce } from "../../libs/createElement";
+import { Observable } from "../../libs/observable";
+import { Module } from "../../models/module";
 
 export class ContentView {
 	protected element: HTMLElement;

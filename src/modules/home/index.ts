@@ -1,6 +1,6 @@
-import { ObservableArray } from "@lib/observable";
-import { Module } from "@src/models/module";
-import { AppView } from "@src/modules/home/views/app";
+import { ObservableArray } from "../../libs/observable";
+import { Module } from "../../models/module";
+import { AppView } from "./views/app/index";
 import { Card } from "./models/card";
 
 const card0 = new Card({

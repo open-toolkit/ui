@@ -1,4 +1,4 @@
-import { createElement as ce } from "@lib/createElement";
+import { createElement as ce } from "../../../../libs/createElement";
 import style from "./style.module.scss";
 import { Card } from "../../models/card";
 

@@ -1,6 +1,6 @@
-import { createElement as ce } from "@lib/createElement";
-import { Module } from "@src/models/module";
-import { ModuleStore } from "@src/stores/module";
+import { createElement as ce } from "../../libs/createElement";
+import { Module } from "../../models/module";
+import { ModuleStore } from "../../stores/module";
 import { SidebarItemView } from "./item";
 
 export class SidebarView {

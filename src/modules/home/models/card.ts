@@ -1,4 +1,4 @@
-import { Observable } from "@lib/observable";
+import { Observable } from "../../../libs/observable";
 
 interface DTO {
 	id: number;
