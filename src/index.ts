@@ -1,10 +1,10 @@
 import "./index.css";
 
-import { AppView } from "./views/app";
+import { AppView } from "./views/app/index";
 import { ModuleStore } from "./stores/module";
 
 import HomeModule from "./modules/home/index";
-import { Observable } from "./libs/observable";
+import obs, { Observable } from "./libs/observable";
 
 const moduleStore = new ModuleStore();
 const currentModule = new Observable(HomeModule);

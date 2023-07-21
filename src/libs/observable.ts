@@ -107,22 +107,20 @@ type ObservableCallback = CallbackFn<readonly unknown[], void | Promise<void>>;
 
 export default new (class {
 	private readonly _observables: WeakMap<object, Map<string, ObservableCallback[]>>;
-	private readonly _symbols: WeakMap<symbol, object>;
 
 	constructor() {
 		this._observables = new WeakMap();
-		this._symbols = new WeakMap();
 	}
 
-	public on(object: object, topic: string, callback: ObservableCallback): void {
-		const topics = this._observables.get(object);
+	public on(obj: object, topic: string, callback: ObservableCallback): void {
+		const topics = this._observables.get(obj);
 
 		if (!topics) {
 			const newTopics = new Map();
 
 			newTopics.set(topic, [callback]);
 
-			this._observables.set(object, newTopics);
+			this._observables.set(obj, newTopics);
 			return;
 		}
 
@@ -131,8 +129,8 @@ export default new (class {
 		observers.push(callback);
 	}
 
-	public off(object: object, topic: string, callback: ObservableCallback): void {
-		const topics = this._observables.get(object);
+	public off(obj: object, topic: string, callback: ObservableCallback): void {
+		const topics = this._observables.get(obj);
 
 		if (!topics) return;
 
@@ -153,16 +151,8 @@ export default new (class {
 		observers.pop();
 	}
 
-	public emit(key: symbol | object, topic: string, ...args: unknown[]): void {
-		let object: object = key as object;
-
-		if (typeof key === "symbol") {
-			object = this._symbols.get(key)!;
-
-			if (!object) return;
-		}
-
-		const topics = this._observables.get(object);
+	public emit(obj: object, topic: string, ...args: unknown[]): void {
+		const topics = this._observables.get(obj);
 
 		if (!topics) return;
 
@@ -171,7 +161,7 @@ export default new (class {
 		if (!observers) return;
 
 		for (const observer of observers) {
-			observer(args);
+			observer(...args);
 		}
 	}
 })();
